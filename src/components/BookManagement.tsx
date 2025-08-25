@@ -36,7 +36,7 @@ const BookManagement = ({ books, onUpdateBooks }: BookManagementProps) => {
     const matchesSearch = book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          book.isbn.includes(searchTerm);
-    const matchesCategory = !categoryFilter || book.category === categoryFilter;
+    const matchesCategory = !categoryFilter || categoryFilter === "all" || book.category === categoryFilter;
     return matchesSearch && matchesCategory;
   });
 
@@ -211,7 +211,7 @@ const BookManagement = ({ books, onUpdateBooks }: BookManagementProps) => {
               <SelectValue placeholder="All Categories" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Categories</SelectItem>
+              <SelectItem value="all">All Categories</SelectItem>
               {categories.map((category) => (
                 <SelectItem key={category} value={category}>
                   {category}
